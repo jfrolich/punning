@@ -6,19 +6,26 @@ defmodule Punning do
 
   The syntax is very simple, when you write
 
-    %{field}
+      %{field}
 
   this will be transformed into:
 
-    %{field: field}
+      %{field: field}
 
   For now it only works in function heads and bodies. You can enable punning by just use-ing this package:
 
-    defmodule App
-      use Punning
+      defmodule App
+        use Punning
 
-      def fun(%{field}), do: field
-    end
+        def example(%{field}), do: field
+
+        def another_example(map), do
+          %{field} = map
+          field
+        end
+
+        def factory(bla, bla2), do: %{bla, bla2}
+      end
   """
 
   import Kernel, except: [def: 2, defp: 2]

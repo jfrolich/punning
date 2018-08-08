@@ -20,7 +20,14 @@ For now it only works in function heads and bodies. You can enable punning by ju
 defmodule App
   use Punning
 
-  def fun(%{field}), do: field
+  def example(%{field}), do: field
+
+  def another_example(map), do
+    %{field} = map
+    field
+  end
+
+  def factory(bla, bla2), do: %{bla, bla2}
 end
 ```
 
